@@ -8,8 +8,8 @@
           <p><input type="text" v-model="person.name">Имя</p>
           <p><input type="text" v-model="person.lastname">Фамилия</p></h5>
         <button class="btn danger" @click="$emit('remove', person.id)">Удалить</button>
-        <button class="btn danger" @click="$emit('update', person.id, person.name, person.lastname)">Сохранить всё</button>
-        <button class="btn danger" @click="$emit('patchupdate', person.id, person.lastname)">Сохранить фамилию</button>
+        <button class="btn danger" @click="$emit('update', person.id, person.name, person.lastname)">Сохранить</button>
+<!--        <button class="btn danger" @click="$emit('patchupdate', person.id, person.lastname)">Сохранить фамилию</button>-->
       </div>
     </div>
   </div>

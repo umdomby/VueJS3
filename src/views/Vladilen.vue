@@ -10,7 +10,8 @@
           <label for="lastname">Введите фамилию</label>
           <input type="text" id="lastname" v-model.trim="lastname">
         </div>
-      <button class="btn primary" :disabled="name.length === 0" >Создать человека</button>
+<!--      <button class="btn primary" :disabled="name.length === 0" >Создать человека</button>-->
+      <button class="btn primary">Создать человека</button>
     </form>
   </div>
 
@@ -45,7 +46,7 @@ export default {
 
     async createPerson() {
       try {
-        const response = await axios.post('/api/vladilen', {
+        const response = await axios.post('/api/task', {
           name: this.name,
           lastname: this.lastname
         })
@@ -62,10 +63,9 @@ export default {
         console.log(e.message)
       }
     },
-
     async loadPeople() {
       try {
-        const {data} = await axios.get('/api/vladilen')
+        const {data} = await axios.get('/api/tasks')
         // if (!data) {
         //   throw new Error('Список людей пуст')
         // }
@@ -89,7 +89,7 @@ export default {
     async removePerson(id) {
       try {
         const name = this.people.find(person => person.id === id).name
-        await axios.delete(`/api/vladilen/${id}`)
+        await axios.delete(`/api/task/${id}`)
         this.people = this.people.filter(person => person.id !== id)
         this.alert = {
           type: 'primary',
@@ -103,7 +103,7 @@ export default {
     },
     async updatePerson(id, name, lastname) {
       try {
-        await axios.put(`/api/vladilen/${id}`, {
+        await axios.put(`/api/task/${id}`, {
           name: name,
           lastname: lastname
         })
@@ -119,7 +119,7 @@ export default {
     },
     async patchUpdatePerson(id, lastname) {
       try {
-        await axios.patch(`/api/vladilen/${id}`, {
+        await axios.patch(`/api/task/${id}`, {
           lastname: lastname
         })
         this.alert = {
